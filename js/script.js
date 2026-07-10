@@ -36,12 +36,7 @@ function tambahKeranjangBiji(nama, harga, selectId) {
   tambahKeranjang(nama, harga, 'biji', kekasaran);
 }
 
-// ===== KERANJANG =====
-const isiKeranjangEl = document.getElementById('isi-keranjang');
-const keranjangKosongEl = document.getElementById('keranjang-kosong');
-const formKonfirmasi = document.getElementById('form-konfirmasi');
-const notifikasi = document.getElementById('notifikasi');
-
+// ===== LOGIKA KERANJANG =====
 function getKeranjang() {
   return JSON.parse(localStorage.getItem('keranjang_cafe') || '[]');
 }
@@ -52,50 +47,50 @@ function simpanKeranjang(list) {
 
 function tampilkanKeranjang() {
   const list = getKeranjang();
-  isiKeranjangEl.innerHTML = '';
+  const containerKosong = document.getElementById('keranjang-kosong');
+  const containerIsi = document.getElementById('keranjang-isi');
+  const daftarKeranjang = document.getElementById('daftar-keranjang');
+
+  if (!daftarKeranjang) return;
+
+  daftarKeranjang.innerHTML = ''; // Kosongkan isi tbody
 
   if (list.length === 0) {
-    keranjangKosongEl.classList.remove('hidden');
+    if (containerKosong) containerKosong.classList.remove('hidden');
+    if (containerIsi) containerIsi.classList.add('hidden');
     return;
   }
-  keranjangKosongEl.classList.add('hidden');
+
+  if (containerKosong) containerKosong.classList.add('hidden');
+  if (containerIsi) containerIsi.classList.remove('hidden');
 
   list.forEach(function (item, index) {
-    const card = document.createElement('div');
-    card.className = 'bg-white border border-krem-gelap rounded-lg p-4';
-
-    let opsiKekasaranHtml = '';
+    let opsiKekasaranHtml = '-';
+    
     if (item.jenis === 'biji') {
-      const opsi = ['Halus', 'Sedang', 'Kasar', 'Biji Utuh'];
-      opsiKekasaranHtml =
-        '<div class="mt-3">' +
-          '<p class="text-sm font-medium text-coklat mb-2">Tingkat Kekasaran:</p>' +
-          '<div class="flex flex-wrap gap-3">' +
-            opsi.map(function (opt) {
-              const checked = item.kekasaran === opt ? 'checked' : '';
-              return (
-                '<label class="flex items-center gap-1.5 text-sm cursor-pointer">' +
-                  '<input type="radio" name="kekasaran-' + index + '" value="' + opt + '" ' + checked +
-                  ' onchange="ubahKekasaran(' + index + ', \'' + opt + '\')" class="accent-aksen" />' +
-                  opt +
-                '</label>'
-              );
-            }).join('') +
-          '</div>' +
-        '</div>';
+      const opsi = ['Halus', 'Sedang', 'Kasar', 'Utuh'];
+      opsiKekasaranHtml = `
+        <div class="flex flex-wrap gap-2 min-w-[200px]">
+          ${opsi.map(opt => `
+            <label class="flex items-center gap-1 text-xs cursor-pointer text-coklat-muda">
+              <input type="radio" name="kekasaran-${index}" value="${opt}" ${item.kekasaran === opt ? 'checked' : ''} onchange="ubahKekasaran(${index}, '${opt}')" class="accent-aksen" />
+              ${opt}
+            </label>
+          `).join('')}
+        </div>
+      `;
     }
 
-    card.innerHTML =
-      '<div class="flex justify-between items-start">' +
-        '<div>' +
-          '<p class="font-semibold">' + item.nama + '</p>' +
-          '<p class="text-sm text-coklat-muda">' + item.harga + '</p>' +
-        '</div>' +
-        '<button onclick="hapusItemKeranjang(' + index + ')" class="text-red-400 hover:text-red-600 text-sm ml-2">Hapus</button>' +
-      '</div>' +
-      opsiKekasaranHtml;
-
-    isiKeranjangEl.appendChild(card);
+    daftarKeranjang.innerHTML += `
+      <tr class="border-b border-krem-gelap/50 hover:bg-krem/40 transition-colors">
+        <td class="p-3 font-medium text-coklat">${item.nama}</td>
+        <td class="p-3 text-sm text-coklat-muda">${item.harga}</td>
+        <td class="p-3">${opsiKekasaranHtml}</td>
+        <td class="p-3 text-center">
+          <button onclick="hapusItemKeranjang(${index})" class="text-red-500 hover:text-red-700 font-semibold text-sm transition-colors">Hapus</button>
+        </td>
+      </tr>
+    `;
   });
 }
 
@@ -112,11 +107,7 @@ function hapusItemKeranjang(index) {
   tampilkanKeranjang();
 }
 
-// ===== RIWAYAT PESANAN =====
-const daftarRiwayat = document.getElementById('daftar-riwayat');
-const riwayatKosong = document.getElementById('riwayat-kosong');
-const btnHapus = document.getElementById('btn-hapus');
-
+// ===== LOGIKA RIWAYAT PESANAN =====
 function getRiwayat() {
   return JSON.parse(localStorage.getItem('riwayat_pesanan') || '[]');
 }
@@ -127,44 +118,61 @@ function simpanRiwayat(list) {
 
 function tampilkanRiwayat() {
   const list = getRiwayat();
-  daftarRiwayat.innerHTML = '';
+  const riwayatKosong = document.getElementById('riwayat-kosong');
+  const riwayatIsi = document.getElementById('riwayat-isi');
+  const daftarRiwayat = document.getElementById('daftar-riwayat');
+
+  if (!daftarRiwayat) return;
+
+  daftarRiwayat.innerHTML = ''; // Kosongkan tbody
 
   if (list.length === 0) {
-    riwayatKosong.classList.remove('hidden');
-    btnHapus.classList.add('hidden');
+    if (riwayatKosong) riwayatKosong.classList.remove('hidden');
+    if (riwayatIsi) riwayatIsi.classList.add('hidden');
     return;
   }
-  riwayatKosong.classList.add('hidden');
-  btnHapus.classList.remove('hidden');
+
+  if (riwayatKosong) riwayatKosong.classList.add('hidden');
+  if (riwayatIsi) riwayatIsi.classList.remove('hidden');
 
   list.forEach(function (p) {
     const itemsText = p.items.map(function (it) {
-      return it.nama + (it.jenis === 'biji' ? ' (Kekasaran: ' + it.kekasaran + ')' : '');
+      return it.nama + (it.jenis === 'biji' ? ` (Kekasaran: ${it.kekasaran})` : '');
     }).join(', ');
 
-    const card = document.createElement('div');
-    card.className = 'bg-white border border-krem-gelap rounded-lg p-4';
-    card.innerHTML =
-      '<p class="font-semibold">' + p.nama + ' <span class="text-sm text-coklat-muda font-normal">(Meja ' + p.meja + ')</span></p>' +
-      '<p class="text-sm text-coklat-muda">' + itemsText + '</p>' +
-      '<p class="text-xs text-coklat-muda/50 mt-1">' + p.waktu + '</p>';
-    daftarRiwayat.appendChild(card);
+    daftarRiwayat.innerHTML += `
+      <tr class="border-b border-krem-gelap/50 hover:bg-krem/40 transition-colors">
+        <td class="p-3 align-top whitespace-nowrap">
+          <span class="font-semibold text-coklat">${p.nama}</span> <br>
+          <span class="text-xs text-coklat-muda font-normal">Meja ${p.meja}</span>
+        </td>
+        <td class="p-3 text-sm text-coklat-muda leading-relaxed align-top">${itemsText}</td>
+        <td class="p-3 text-xs text-coklat-muda/80 align-top whitespace-nowrap">${p.waktu}</td>
+      </tr>
+    `;
   });
 }
 
-// ===== SUBMIT KONFIRMASI =====
-formKonfirmasi.addEventListener('submit', function (e) {
-  e.preventDefault();
-
+// ===== FUNGSI KONFIRMASI PESANAN =====
+function konfirmasiPesanan() {
   const keranjang = getKeranjang();
+  
   if (keranjang.length === 0) {
     alert('Keranjang masih kosong. Tambahkan menu atau biji kopi dulu ya!');
     return;
   }
 
+  const inputNama = document.getElementById('nama-pemesan');
+  const inputMeja = document.getElementById('nomor-meja');
+
+  if (inputNama.value.trim() === '' || inputMeja.value.trim() === '') {
+    alert('Mohon isi Nama Pemesan dan Nomor Meja terlebih dahulu!');
+    return;
+  }
+
   const pesananBaru = {
-    nama: document.getElementById('nama').value,
-    meja: document.getElementById('meja').value,
+    nama: inputNama.value,
+    meja: inputMeja.value,
     items: keranjang,
     waktu: new Date().toLocaleString('id-ID')
   };
@@ -174,24 +182,23 @@ formKonfirmasi.addEventListener('submit', function (e) {
   simpanRiwayat(riwayat);
 
   localStorage.removeItem('keranjang_cafe');
+  inputNama.value = '';
+  inputMeja.value = '';
 
-  formKonfirmasi.reset();
-
-  notifikasi.classList.remove('hidden');
-  setTimeout(function () {
-    notifikasi.classList.add('hidden');
-  }, 3000);
+  alert('✅ Pesanan berhasil dikonfirmasi!');
 
   tampilkanKeranjang();
   tampilkanRiwayat();
-});
+}
 
-btnHapus.addEventListener('click', function () {
+// ===== FUNGSI HAPUS SEMUA RIWAYAT =====
+function hapusSemuaRiwayat() {
   if (confirm('Yakin ingin menghapus semua riwayat pesanan?')) {
     localStorage.removeItem('riwayat_pesanan');
     tampilkanRiwayat();
   }
-});
+}
 
+// ===== INISIALISASI AWAL =====
 tampilkanKeranjang();
 tampilkanRiwayat();
