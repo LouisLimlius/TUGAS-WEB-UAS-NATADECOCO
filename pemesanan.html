@@ -26,97 +26,114 @@
     body { font-family: 'Poppins', sans-serif; }
   </style>
 </head>
-<body class="bg-krem text-coklat">
+<body class="bg-krem text-coklat scroll-smooth">
 
   <!-- Navbar -->
-  <nav class="bg-coklat fixed top-0 left-0 right-0 z-50 shadow-md">
+  <nav id="navbar" class="bg-coklat/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
-      <a href="index.html" class="text-2xl font-bold text-white italic">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
+      <a href="index.html" class="text-2xl font-bold text-white italic hover:scale-105 transition-transform duration-300 inline-block">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
       <button id="hamburger" class="md:hidden text-white text-2xl">&#9776;</button>
       <div id="nav-links" class="hidden md:flex gap-6">
-        <a href="index.html" class="text-white/75 hover:text-aksen-muda transition">Home</a>
-        <a href="index.html#about" class="text-white/75 hover:text-aksen-muda transition">Tentang Kami</a>
-        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition">Menu</a>
-        <a href="pemesanan.html" class="text-white hover:text-aksen-muda transition">Pemesanan</a>
-        <a href="contact.html" class="text-white/75 hover:text-aksen-muda transition">Kontak</a>
+        <a href="index.html" class="text-white/75 hover:text-aksen-muda transition relative group">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="index.html#about" class="text-white/75 hover:text-aksen-muda transition relative group">Tentang Kami<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition relative group">Menu<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="pemesanan.html" class="text-white hover:text-aksen-muda transition relative group">Pemesanan<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="contact.html" class="text-white/75 hover:text-aksen-muda transition relative group">Kontak<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
       </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-coklat-muda px-4 pb-4">
-      <a href="index.html" class="block py-2 text-white/75 hover:text-aksen-muda">Home</a>
-      <a href="index.html#about" class="block py-2 text-white/75 hover:text-aksen-muda">Tentang Kami</a>
-      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda">Menu</a>
-      <a href="pemesanan.html" class="block py-2 text-white hover:text-aksen-muda">Pemesanan</a>
-      <a href="contact.html" class="block py-2 text-white/75 hover:text-aksen-muda">Kontak</a>
+      <a href="index.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Home</a>
+      <a href="index.html#about" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Tentang Kami</a>
+      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Menu</a>
+      <a href="pemesanan.html" class="block py-2 text-white hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Pemesanan</a>
+      <a href="contact.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Kontak</a>
     </div>
   </nav>
 
-  <!-- Halaman Pemesanan (Keranjang Gabungan) -->
-  <section class="pt-24 pb-16">
-    <div class="max-w-2xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-2">Keranjang <span class="text-aksen">Pesanan</span></h2>
+  <main class="bg-krem-gelap py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-3xl font-bold text-center mb-8">Keranjang Pesanan</h1>
       <p class="text-center text-coklat-muda mb-8">Minuman & biji kopi yang kamu tambahkan akan muncul di sini</p>
 
-      <!-- Isi Keranjang -->
-      <div id="isi-keranjang" class="space-y-3 mb-6"></div>
-      <p id="keranjang-kosong" class="text-coklat-muda text-center py-4 hidden">Keranjang masih kosong. Yuk pilih menu atau biji kopi dulu!</p>
-
-      <!-- Form Konfirmasi -->
-      <form id="form-konfirmasi" class="bg-white rounded-lg shadow-md p-6 space-y-4">
-        <div>
-          <label for="nama" class="block font-semibold mb-1">Nama Pemesan</label>
-          <input type="text" id="nama" placeholder="Masukkan nama kamu" required
-            class="w-full border border-krem-gelap rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-aksen bg-krem" />
+      <div class="bg-white rounded-lg shadow p-6 mb-8 hover:shadow-lg transition-shadow duration-300">
+        <div id="keranjang-kosong" class="text-center py-8">
+          <p class="text-coklat-muda">Keranjang masih kosong. Yuk pilih menu atau biji kopi dulu!</p>
         </div>
-
-        <div>
-          <label for="meja" class="block font-semibold mb-1">Nomor Meja</label>
-          <input type="number" id="meja" placeholder="Contoh: 5" min="1" max="20" required
-            class="w-full border border-krem-gelap rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-aksen bg-krem" />
+        
+        <div id="keranjang-isi" class="hidden overflow-x-auto border border-krem-gelap rounded-lg">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-krem border-b border-krem-gelap text-coklat">
+                <th class="p-3 font-semibold text-sm whitespace-nowrap">Menu</th>
+                <th class="p-3 font-semibold text-sm whitespace-nowrap">Harga</th>
+                <th class="p-3 font-semibold text-sm whitespace-nowrap">Kekasaran</th>
+                <th class="p-3 font-semibold text-sm text-center whitespace-nowrap">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="daftar-keranjang">
+              </tbody>
+          </table>
         </div>
-
-        <button type="submit"
-          class="w-full bg-aksen hover:bg-aksen-muda text-white font-semibold py-3 rounded-lg transition">
-          Konfirmasi Pesanan
-        </button>
-      </form>
-
-      <!-- Notifikasi -->
-      <div id="notifikasi" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-center">
-        Pesanan berhasil dikonfirmasi!
       </div>
 
-      <!-- Riwayat Pesanan -->
-      <div class="mt-10">
-        <h3 class="text-xl font-bold mb-4">Riwayat <span class="text-aksen">Pesanan</span></h3>
-        <div id="daftar-riwayat" class="space-y-3"></div>
-        <p id="riwayat-kosong" class="text-coklat-muda text-center py-4 hidden">Belum ada riwayat pesanan.</p>
+      <div class="bg-white rounded-lg shadow p-6 mb-8 hover:shadow-lg transition-shadow duration-300">
+        <h2 class="text-xl font-semibold mb-4">Detail Pemesanan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-sm font-medium mb-2">Nama Pemesan</label>
+            <input type="text" id="nama-pemesan" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aksen transition-all duration-300 bg-krem/30" placeholder="Masukkan nama kamu" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Nomor Meja</label>
+            <input type="number" id="nomor-meja" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aksen transition-all duration-300 bg-krem/30" placeholder="Contoh: 5" />
+          </div>
+        </div>
+        <button onclick="konfirmasiPesanan()" class="w-full bg-aksen hover:bg-aksen-muda text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-aksen/30">Konfirmasi Pesanan</button>
+      </div>
 
-        <button id="btn-hapus" class="hidden mt-4 bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg transition">
-          Hapus Semua Riwayat
-        </button>
+      <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300">
+        <h2 class="text-xl font-semibold mb-4">Riwayat Pesanan</h2>
+        <div id="riwayat-kosong" class="text-center py-4">
+          <p class="text-coklat-muda">Belum ada riwayat pesanan.</p>
+        </div>
+        
+        <div id="riwayat-isi" class="hidden">
+          <div class="overflow-x-auto border border-krem-gelap rounded-lg">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-krem border-b border-krem-gelap text-coklat">
+                  <th class="p-3 font-semibold text-sm whitespace-nowrap">Nama (Meja)</th>
+                  <th class="p-3 font-semibold text-sm min-w-[250px]">Detail Pesanan</th>
+                  <th class="p-3 font-semibold text-sm whitespace-nowrap">Waktu</th>
+                </tr>
+              </thead>
+              <tbody id="daftar-riwayat">
+                </tbody>
+            </table>
+          </div>
+          <button onclick="hapusSemuaRiwayat()" class="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/30">Hapus Semua Riwayat</button>
+        </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- Footer -->
   <footer class="bg-coklat text-white py-8">
     <div class="max-w-6xl mx-auto px-4 text-center">
       <div class="flex justify-center gap-6 mb-4">
-        <a href="#" class="hover:text-aksen-muda transition">Instagram</a>
-        <a href="#" class="hover:text-aksen-muda transition">Twitter</a>
-        <a href="#" class="hover:text-aksen-muda transition">Facebook</a>
+        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Instagram</a>
+        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Twitter</a>
+        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Facebook</a>
       </div>
       <div class="flex justify-center gap-6 mb-4 text-white/75 text-sm">
-        <a href="index.html" class="hover:text-white">Home</a>
-        <a href="menu.html" class="hover:text-white">Menu</a>
-        <a href="pemesanan.html" class="hover:text-white">Pemesanan</a>
-        <a href="contact.html" class="hover:text-white">Kontak</a>
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="menu.html" class="hover:text-white transition">Menu</a>
+        <a href="pemesanan.html" class="hover:text-white transition">Pemesanan</a>
+        <a href="contact.html" class="hover:text-white transition">Kontak</a>
       </div>
       <p class="text-white/50 text-sm">Created by Kelompok NataDeCoco. &copy; 2026.</p>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
-  
 </body>
 </html>
