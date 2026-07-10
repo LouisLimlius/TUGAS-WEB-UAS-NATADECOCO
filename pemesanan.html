@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pemesanan - NataDeCoco</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coklat: '#3B1F0B',
+            'coklat-muda': '#5C3D2E',
+            krem: '#FBF5EB',
+            'krem-gelap': '#F0E6D0',
+            aksen: '#C8622A',
+            'aksen-muda': '#E8925A',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+</head>
+<body class="bg-krem text-coklat">
+
+  <!-- Navbar -->
+  <nav class="bg-coklat fixed top-0 left-0 right-0 z-50 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
+      <a href="index.html" class="text-2xl font-bold text-white italic">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
+      <button id="hamburger" class="md:hidden text-white text-2xl">&#9776;</button>
+      <div id="nav-links" class="hidden md:flex gap-6">
+        <a href="index.html" class="text-white/75 hover:text-aksen-muda transition">Home</a>
+        <a href="index.html#about" class="text-white/75 hover:text-aksen-muda transition">Tentang Kami</a>
+        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition">Menu</a>
+        <a href="pemesanan.html" class="text-white hover:text-aksen-muda transition">Pemesanan</a>
+        <a href="contact.html" class="text-white/75 hover:text-aksen-muda transition">Kontak</a>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-coklat-muda px-4 pb-4">
+      <a href="index.html" class="block py-2 text-white/75 hover:text-aksen-muda">Home</a>
+      <a href="index.html#about" class="block py-2 text-white/75 hover:text-aksen-muda">Tentang Kami</a>
+      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda">Menu</a>
+      <a href="pemesanan.html" class="block py-2 text-white hover:text-aksen-muda">Pemesanan</a>
+      <a href="contact.html" class="block py-2 text-white/75 hover:text-aksen-muda">Kontak</a>
+    </div>
+  </nav>
+
+  <!-- Halaman Pemesanan (Keranjang Gabungan) -->
+  <section class="pt-24 pb-16">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-2">Keranjang <span class="text-aksen">Pesanan</span></h2>
+      <p class="text-center text-coklat-muda mb-8">Minuman & biji kopi yang kamu tambahkan akan muncul di sini</p>
+
+      <!-- Isi Keranjang -->
+      <div id="isi-keranjang" class="space-y-3 mb-6"></div>
+      <p id="keranjang-kosong" class="text-coklat-muda text-center py-4 hidden">Keranjang masih kosong. Yuk pilih menu atau biji kopi dulu!</p>
+
+      <!-- Form Konfirmasi -->
+      <form id="form-konfirmasi" class="bg-white rounded-lg shadow-md p-6 space-y-4">
+        <div>
+          <label for="nama" class="block font-semibold mb-1">Nama Pemesan</label>
+          <input type="text" id="nama" placeholder="Masukkan nama kamu" required
+            class="w-full border border-krem-gelap rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-aksen bg-krem" />
+        </div>
+
+        <div>
+          <label for="meja" class="block font-semibold mb-1">Nomor Meja</label>
+          <input type="number" id="meja" placeholder="Contoh: 5" min="1" max="20" required
+            class="w-full border border-krem-gelap rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-aksen bg-krem" />
+        </div>
+
+        <button type="submit"
+          class="w-full bg-aksen hover:bg-aksen-muda text-white font-semibold py-3 rounded-lg transition">
+          Konfirmasi Pesanan
+        </button>
+      </form>
+
+      <!-- Notifikasi -->
+      <div id="notifikasi" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-center">
+        Pesanan berhasil dikonfirmasi!
+      </div>
+
+      <!-- Riwayat Pesanan -->
+      <div class="mt-10">
+        <h3 class="text-xl font-bold mb-4">Riwayat <span class="text-aksen">Pesanan</span></h3>
+        <div id="daftar-riwayat" class="space-y-3"></div>
+        <p id="riwayat-kosong" class="text-coklat-muda text-center py-4 hidden">Belum ada riwayat pesanan.</p>
+
+        <button id="btn-hapus" class="hidden mt-4 bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg transition">
+          Hapus Semua Riwayat
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-coklat text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="flex justify-center gap-6 mb-4">
+        <a href="#" class="hover:text-aksen-muda transition">Instagram</a>
+        <a href="#" class="hover:text-aksen-muda transition">Twitter</a>
+        <a href="#" class="hover:text-aksen-muda transition">Facebook</a>
+      </div>
+      <div class="flex justify-center gap-6 mb-4 text-white/75 text-sm">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="menu.html" class="hover:text-white">Menu</a>
+        <a href="pemesanan.html" class="hover:text-white">Pemesanan</a>
+        <a href="contact.html" class="hover:text-white">Kontak</a>
+      </div>
+      <p class="text-white/50 text-sm">Created by Kelompok NataDeCoco. &copy; 2026.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    // ===== KERANJANG =====
+    const isiKeranjangEl = document.getElementById('isi-keranjang');
+    const keranjangKosongEl = document.getElementById('keranjang-kosong');
+    const formKonfirmasi = document.getElementById('form-konfirmasi');
+    const notifikasi = document.getElementById('notifikasi');
+
+    function getKeranjang() {
+      return JSON.parse(localStorage.getItem('keranjang_cafe') || '[]');
+    }
+
+    function simpanKeranjang(list) {
+      localStorage.setItem('keranjang_cafe', JSON.stringify(list));
+    }
+
+    function tampilkanKeranjang() {
+      const list = getKeranjang();
+      isiKeranjangEl.innerHTML = '';
+
+      if (list.length === 0) {
+        keranjangKosongEl.classList.remove('hidden');
+        return;
+      }
+      keranjangKosongEl.classList.add('hidden');
+
+      list.forEach(function (item, index) {
+        const card = document.createElement('div');
+        card.className = 'bg-white border border-krem-gelap rounded-lg p-4';
+
+        let opsiKekasaranHtml = '';
+        if (item.jenis === 'biji') {
+          const opsi = ['Halus', 'Sedang', 'Kasar', 'Biji Utuh'];
+          opsiKekasaranHtml =
+            '<div class="mt-3">' +
+              '<p class="text-sm font-medium text-coklat mb-2">Tingkat Kekasaran:</p>' +
+              '<div class="flex flex-wrap gap-3">' +
+                opsi.map(function (opt) {
+                  const checked = item.kekasaran === opt ? 'checked' : '';
+                  return (
+                    '<label class="flex items-center gap-1.5 text-sm cursor-pointer">' +
+                      '<input type="radio" name="kekasaran-' + index + '" value="' + opt + '" ' + checked +
+                      ' onchange="ubahKekasaran(' + index + ', \'' + opt + '\')" class="accent-aksen" />' +
+                      opt +
+                    '</label>'
+                  );
+                }).join('') +
+              '</div>' +
+            '</div>';
+        }
+
+        card.innerHTML =
+          '<div class="flex justify-between items-start">' +
+            '<div>' +
+              '<p class="font-semibold">' + item.nama + '</p>' +
+              '<p class="text-sm text-coklat-muda">' + item.harga + '</p>' +
+            '</div>' +
+            '<button onclick="hapusItemKeranjang(' + index + ')" class="text-red-400 hover:text-red-600 text-sm ml-2">Hapus</button>' +
+          '</div>' +
+          opsiKekasaranHtml;
+
+        isiKeranjangEl.appendChild(card);
+      });
+    }
+
+    function ubahKekasaran(index, nilai) {
+      const list = getKeranjang();
+      list[index].kekasaran = nilai;
+      simpanKeranjang(list);
+    }
+
+    function hapusItemKeranjang(index) {
+      const list = getKeranjang();
+      list.splice(index, 1);
+      simpanKeranjang(list);
+      tampilkanKeranjang();
+    }
+
+    // ===== RIWAYAT PESANAN =====
+    const daftarRiwayat = document.getElementById('daftar-riwayat');
+    const riwayatKosong = document.getElementById('riwayat-kosong');
+    const btnHapus = document.getElementById('btn-hapus');
+
+    function getRiwayat() {
+      return JSON.parse(localStorage.getItem('riwayat_pesanan') || '[]');
+    }
+
+    function simpanRiwayat(list) {
+      localStorage.setItem('riwayat_pesanan', JSON.stringify(list));
+    }
+
+    function tampilkanRiwayat() {
+      const list = getRiwayat();
+      daftarRiwayat.innerHTML = '';
+
+      if (list.length === 0) {
+        riwayatKosong.classList.remove('hidden');
+        btnHapus.classList.add('hidden');
+        return;
+      }
+      riwayatKosong.classList.add('hidden');
+      btnHapus.classList.remove('hidden');
+
+      list.forEach(function (p) {
+        const itemsText = p.items.map(function (it) {
+          return it.nama + (it.jenis === 'biji' ? ' (Kekasaran: ' + it.kekasaran + ')' : '');
+        }).join(', ');
+
+        const card = document.createElement('div');
+        card.className = 'bg-white border border-krem-gelap rounded-lg p-4';
+        card.innerHTML =
+          '<p class="font-semibold">' + p.nama + ' <span class="text-sm text-coklat-muda font-normal">(Meja ' + p.meja + ')</span></p>' +
+          '<p class="text-sm text-coklat-muda">' + itemsText + '</p>' +
+          '<p class="text-xs text-coklat-muda/50 mt-1">' + p.waktu + '</p>';
+        daftarRiwayat.appendChild(card);
+      });
+    }
+
+    // ===== SUBMIT KONFIRMASI =====
+    formKonfirmasi.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const keranjang = getKeranjang();
+      if (keranjang.length === 0) {
+        alert('Keranjang masih kosong. Tambahkan menu atau biji kopi dulu ya!');
+        return;
+      }
+
+      const pesananBaru = {
+        nama: document.getElementById('nama').value,
+        meja: document.getElementById('meja').value,
+        items: keranjang,
+        waktu: new Date().toLocaleString('id-ID')
+      };
+
+      const riwayat = getRiwayat();
+      riwayat.push(pesananBaru);
+      simpanRiwayat(riwayat);
+
+      localStorage.removeItem('keranjang_cafe');
+
+      formKonfirmasi.reset();
+
+      notifikasi.classList.remove('hidden');
+      setTimeout(function () {
+        notifikasi.classList.add('hidden');
+      }, 3000);
+
+      tampilkanKeranjang();
+      tampilkanRiwayat();
+    });
+
+    btnHapus.addEventListener('click', function () {
+      if (confirm('Yakin ingin menghapus semua riwayat pesanan?')) {
+        localStorage.removeItem('riwayat_pesanan');
+        tampilkanRiwayat();
+      }
+    });
+
+    tampilkanKeranjang();
+    tampilkanRiwayat();
+  </script>
+</body>
+</html>
