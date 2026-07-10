@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +9,22 @@
     tailwind.config = {
       theme: {
         extend: {
+          // ✅ DITAMBAHKAN: Konfigurasi animasi soft-bounce agar panahnya bisa bergerak
+          keyframes: {
+            'soft-bounce': {
+              '0%, 100%': { 
+                transform: 'translateY(-15%)', 
+                animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' 
+              },
+              '50%': { 
+                transform: 'translateY(0)', 
+                animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' 
+              },
+            }
+          },
+          animation: {
+            'soft-bounce': 'soft-bounce 2s infinite',
+          },
           colors: {
             coklat: '#3B1F0B',
             'coklat-muda': '#5C3D2E',
@@ -16,26 +32,26 @@
             'krem-gelap': '#F0E6D0',
             aksen: '#C8622A',
             'aksen-muda': '#E8925A',
+            emas: '#C9A66B',
           }
         }
       }
     }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
   <style>
     body { font-family: 'Poppins', sans-serif; }
   </style>
 </head>
 <body class="bg-krem text-coklat scroll-smooth">
 
-  <!-- Navbar -->
   <nav id="navbar" class="bg-coklat/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
       <a href="index.html" class="text-2xl font-bold text-white italic hover:scale-105 transition-transform duration-300 inline-block">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
       <button id="hamburger" class="md:hidden text-white text-2xl">&#9776;</button>
       <div id="nav-links" class="hidden md:flex gap-6">
         <a href="index.html" class="text-white hover:text-aksen-muda transition relative group">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
-        <a href="#about" class="text-white/75 hover:text-aksen-muda transition relative group">Tentang Kami<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
         <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition relative group">Menu<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
         <a href="pemesanan.html" class="text-white/75 hover:text-aksen-muda transition relative group">Pemesanan<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
         <a href="contact.html" class="text-white/75 hover:text-aksen-muda transition relative group">Kontak<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
@@ -43,54 +59,79 @@
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-coklat-muda px-4 pb-4">
       <a href="index.html" class="block py-2 text-white hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Home</a>
-      <a href="#about" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Tentang Kami</a>
       <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Menu</a>
       <a href="pemesanan.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Pemesanan</a>
       <a href="contact.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Kontak</a>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="min-h-screen flex items-center bg-cover bg-center relative" style="background-image: url('img/header-bg.jpg');">
-    <div class="absolute inset-0 bg-black/50"></div>
-    <div class="relative text-center text-white px-4 w-full">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Selamat Datang di <span class="text-aksen-muda">NataDe'Coco</span></h1>
-      <p class="text-lg mb-6">Nikmati kopi terbaik dengan suasana yang nyaman</p>
-      <a href="menu.html" class="inline-block bg-aksen hover:bg-aksen-muda text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-aksen/30">Lihat Menu</a>
+  <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <div class="absolute inset-0 bg-cover bg-center animate-slow-zoom" style="background-image: url('img/header-bg.jpg');"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-coklat/70 via-coklat/50 to-coklat/80"></div>
+    <div class="relative text-center text-white px-4 max-w-3xl">
+      <p class="reveal tracking-[0.3em] uppercase text-emas text-sm md:text-base mb-4">Kedai Kopi Sejak 2026</p>
+      <h1 class="reveal delay-1 text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">Selamat Datang di<br /><span class="text-emas italic">NataDe'Coco</span></h1>
+      <p class="reveal delay-2 text-lg md:text-xl text-krem-gelap mb-10 font-light">Nikmati kopi terbaik dengan suasana hangat yang menemani setiap momenmu</p>
+      <div class="reveal delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="menu.html" class="bg-aksen hover:bg-aksen-muda text-white px-8 py-4 rounded-full font-semibold transition transform hover:scale-105 shadow-lg">Lihat Menu</a>
+        <a href="pemesanan.html" class="bg-white/10 hover:bg-white/20 border border-white/40 text-white px-8 py-4 rounded-full font-semibold transition transform hover:scale-105 backdrop-blur">Pesan Sekarang</a>
+      </div>
     </div>
+    <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/80 hover:text-aksen-muda transition-colors duration-300 animate-soft-bounce">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+      </svg>
+    </a>
   </section>
 
-  <!-- Tentang Kami -->
-  <section id="about" class="min-h-screen flex items-center">
-    <div class="max-w-6xl mx-auto px-4 py-16 w-full">
-      <h2 class="text-3xl font-bold text-center mb-2">Tentang <span class="text-aksen">Kami</span></h2>
-      <p class="text-center text-coklat-muda mb-10">Cerita di balik secangkir kopi kami</p>
+<section id="about" class="min-h-screen flex items-center bg-krem py-24">
+  <div class="max-w-6xl mx-auto px-4 w-full">
+    <div class="text-center mb-14">
+      <p class="reveal tracking-[0.25em] uppercase text-aksen text-sm mb-2">Kenali Kami</p>
+      <h2 class="reveal delay-1 text-4xl md:text-5xl font-bold mb-3">Tentang <span class="text-aksen italic">Kami</span></h2>
+      <div class="reveal delay-1 w-20 h-1 bg-emas mx-auto rounded-full"></div>
+    </div>
 
-      <div class="flex flex-col md:flex-row gap-8 items-center">
-        <img src="img/tentang-kami.png" alt="Tentang Kami" class="w-full md:w-1/2 rounded-lg shadow-md hover:scale-105 hover:shadow-xl transition-all duration-500" />
-        <div class="hover:scale-105 transition-transform duration-300">
-          <h3 class="text-xl font-semibold mb-3">Kedai Kopi NataDe'Coco</h3>
-          <p class="text-coklat-muda leading-relaxed mb-4">
-            NataDe'Coco adalah kedai kopi yang berdiri sejak 2026 di kota Medan.
-            Kami menyajikan berbagai pilihan kopi berkualitas dengan biji kopi pilihan
-            dari petani lokal Sumatera Utara.
-          </p>
-          <p class="text-coklat-muda leading-relaxed">
-            Dengan suasana yang nyaman dan hangat, kami berharap setiap pelanggan
-            dapat menikmati waktu bersantai sambil menikmati secangkir kopi terbaik kami.
-          </p>
+    <div class="flex flex-col md:flex-row gap-12 items-center">
+      <div class="reveal w-full md:w-1/2">
+        <img src="img/tentang-kami.png" alt="Tentang Kami" 
+             class="w-full rounded-2xl shadow-2xl object-cover transition-all duration-500 hover:scale-[1.02] hover:shadow-coklat-tua/30 hover:shadow-3xl" />
+      </div>
+      <div class="reveal delay-2 md:w-1/2">
+        <h3 class="text-2xl md:text-3xl font-semibold mb-5">Kedai Kopi NataDe'Coco</h3>
+        <p class="text-coklat-muda leading-relaxed mb-5 text-lg">
+          NataDe'Coco adalah kedai kopi yang berdiri sejak 2026 di kota Medan.
+          Kami menyajikan berbagai pilihan kopi berkualitas dengan biji kopi pilihan
+          dari petani lokal Sumatera Utara.
+        </p>
+        <p class="text-coklat-muda leading-relaxed mb-8 text-lg">
+          Dengan suasana yang nyaman dan hangat, kami berharap setiap pelanggan
+          dapat menikmati waktu bersantai sambil menikmati secangkir kopi terbaik kami.
+        </p>
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div class="group bg-white rounded-xl p-4 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-default">
+            <p class="text-3xl font-bold text-aksen font-display group-hover:scale-110 transition-transform duration-300">2026</p>
+            <p class="text-sm text-coklat-muda mt-1 group-hover:text-coklat-tua transition-colors">Berdiri Sejak</p>
+          </div>
+          <div class="group bg-white rounded-xl p-4 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-default">
+            <p class="text-3xl font-bold text-aksen font-display group-hover:scale-110 transition-transform duration-300">6+</p>
+            <p class="text-sm text-coklat-muda mt-1 group-hover:text-coklat-tua transition-colors">Menu Pilihan</p>
+          </div>
+          <div class="group bg-white rounded-xl p-4 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-default">
+            <p class="text-3xl font-bold text-aksen font-display group-hover:scale-110 transition-transform duration-300">100%</p>
+            <p class="text-sm text-coklat-muda mt-1 group-hover:text-coklat-tua transition-colors">Biji Lokal</p>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Menu Highlight -->
   <section class="min-h-screen flex items-center bg-krem-gelap">
     <div class="max-w-6xl mx-auto px-4 py-16 w-full">
       <h2 class="text-3xl font-bold text-center mb-2">Menu <span class="text-aksen">Favorit</span></h2>
       <p class="text-center text-coklat-muda mb-10">Beberapa menu terlaris kami</p>
 
-      <!-- ✅ DIPERBAIKI: typo bg-krem-gelapgrid → grid saja -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-lg shadow p-4 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
           <div class="overflow-hidden rounded mb-3">
@@ -128,9 +169,9 @@
   <footer class="bg-coklat text-white py-8">
     <div class="max-w-6xl mx-auto px-4 text-center">
       <div class="flex justify-center gap-6 mb-4">
-        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Instagram</a>
-        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Twitter</a>
-        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Facebook</a>
+        <a href="https://www.instagram.com/?hl=en" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Instagram</a>
+        <a href="https://x.com/" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Twitter</a>
+        <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Facebook</a>
       </div>
       <div class="flex justify-center gap-6 mb-4 text-white/75 text-sm">
         <a href="index.html" class="hover:text-white transition">Home</a>
@@ -141,7 +182,7 @@
       <p class="text-white/50 text-sm">Created by Kelompok NataDeCoco. &copy; 2026.</p>
     </div>
   </footer>
-
+  
   <script src="js/script.js"></script>
 </body>
 </html>
