@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NataDeCoco - Kedai Kopi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coklat: '#3B1F0B',
+            'coklat-muda': '#5C3D2E',
+            krem: '#FBF5EB',
+            'krem-gelap': '#F0E6D0',
+            aksen: '#C8622A',
+            'aksen-muda': '#E8925A',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+</head>
+<body class="bg-krem text-coklat">
+
+  <!-- Navbar -->
+  <nav class="bg-coklat fixed top-0 left-0 right-0 z-50 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
+      <a href="index.html" class="text-2xl font-bold text-white italic">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
+      <button id="hamburger" class="md:hidden text-white text-2xl">&#9776;</button>
+      <div id="nav-links" class="hidden md:flex gap-6">
+        <a href="index.html" class="text-white hover:text-aksen-muda transition">Home</a>
+        <a href="#about" class="text-white/75 hover:text-aksen-muda transition">Tentang Kami</a>
+        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition">Menu</a>
+        <a href="pemesanan.html" class="text-white/75 hover:text-aksen-muda transition">Pemesanan</a>
+        <a href="contact.html" class="text-white/75 hover:text-aksen-muda transition">Kontak</a>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-coklat-muda px-4 pb-4">
+      <a href="index.html" class="block py-2 text-white hover:text-aksen-muda">Home</a>
+      <a href="#about" class="block py-2 text-white/75 hover:text-aksen-muda">Tentang Kami</a>
+      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda">Menu</a>
+      <a href="pemesanan.html" class="block py-2 text-white/75 hover:text-aksen-muda">Pemesanan</a>
+      <a href="contact.html" class="block py-2 text-white/75 hover:text-aksen-muda">Kontak</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section: Selamat Datang (1 Halaman Penuh) -->
+  <section class="min-h-screen flex items-center bg-cover bg-center relative" style="background-image: url('img/header-bg.jpg');">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative text-center text-white px-4 w-full">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Selamat Datang di <span class="text-aksen-muda">NataDe'Coco</span></h1>
+      <p class="text-lg mb-6">Nikmati kopi terbaik dengan suasana yang nyaman</p>
+      <a href="menu.html" class="bg-aksen hover:bg-aksen-muda text-white px-6 py-3 rounded-lg font-semibold transition">Lihat Menu</a>
+    </div>
+  </section>
+
+  <!-- Tentang Kami (1 Halaman Penuh) -->
+  <section id="about" class="min-h-screen flex items-center">
+    <div class="max-w-6xl mx-auto px-4 py-16 w-full">
+      <h2 class="text-3xl font-bold text-center mb-2">Tentang <span class="text-aksen">Kami</span></h2>
+      <p class="text-center text-coklat-muda mb-10">Cerita di balik secangkir kopi kami</p>
+
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+        <img src="img/tentang-kami.png" alt="Tentang Kami" class="w-full md:w-1/2 rounded-lg shadow-md" />
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Kedai Kopi NataDe'Coco</h3>
+          <p class="text-coklat-muda leading-relaxed mb-4">
+            NataDe'Coco adalah kedai kopi yang berdiri sejak 2026 di kota Medan.
+            Kami menyajikan berbagai pilihan kopi berkualitas dengan biji kopi pilihan
+            dari petani lokal Sumatera Utara.
+          </p>
+          <p class="text-coklat-muda leading-relaxed">
+            Dengan suasana yang nyaman dan hangat, kami berharap setiap pelanggan
+            dapat menikmati waktu bersantai sambil menikmati secangkir kopi terbaik kami.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Highlight (1 Halaman Penuh) -->
+  <section class="min-h-screen flex items-center bg-krem-gelap">
+    <div class="max-w-6xl mx-auto px-4 py-16 w-full">
+      <h2 class="text-3xl font-bold text-center mb-2">Menu <span class="text-aksen">Favorit</span></h2>
+      <p class="text-center text-coklat-muda mb-10">Beberapa menu terlaris kami</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4 text-center">
+          <img src="img/menu/americano.png" alt="Americano" class="w-32 h-32 object-cover mx-auto mb-3 rounded" />
+          <h3 class="font-semibold text-lg">Americano</h3>
+          <p class="text-aksen font-bold">IDR 20K</p>
+          <button onclick="tambahKeranjang('Americano', 'IDR 20K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition">+ Keranjang</button>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 text-center">
+          <img src="img/menu/kopigulaaren.png" alt="Kopi Gula Aren" class="w-32 h-32 object-cover mx-auto mb-3 rounded" />
+          <h3 class="font-semibold text-lg">Kopi Susu Gula Aren</h3>
+          <p class="text-aksen font-bold">IDR 25K</p>
+          <button onclick="tambahKeranjang('Kopi Susu Gula Aren', 'IDR 25K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition">+ Keranjang</button>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 text-center">
+          <img src="img/menu/capuccino.png" alt="Cappuccino" class="w-32 h-32 object-cover mx-auto mb-3 rounded" />
+          <h3 class="font-semibold text-lg">Cappuccino</h3>
+          <p class="text-aksen font-bold">IDR 35K</p>
+          <button onclick="tambahKeranjang('Cappuccino', 'IDR 35K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition">+ Keranjang</button>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="menu.html" class="bg-aksen hover:bg-aksen-muda text-white px-6 py-3 rounded-lg font-semibold transition">Lihat Semua Menu &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-coklat text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="flex justify-center gap-6 mb-4">
+        <a href="#" class="hover:text-aksen-muda transition">Instagram</a>
+        <a href="#" class="hover:text-aksen-muda transition">Twitter</a>
+        <a href="#" class="hover:text-aksen-muda transition">Facebook</a>
+      </div>
+      <div class="flex justify-center gap-6 mb-4 text-white/75 text-sm">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="menu.html" class="hover:text-white">Menu</a>
+        <a href="pemesanan.html" class="hover:text-white">Pemesanan</a>
+        <a href="contact.html" class="hover:text-white">Kontak</a>
+      </div>
+      <p class="text-white/50 text-sm">Created by Kelompok NataDeCoco. &copy; 2026.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
