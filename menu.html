@@ -29,26 +29,97 @@
 <body class="bg-krem text-coklat">
 
   <!-- Navbar -->
-  <nav class="bg-coklat fixed top-0 left-0 right-0 z-50 shadow-md">
+  <nav id="navbar" class="bg-coklat/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
-      <a href="index.html" class="text-2xl font-bold text-white italic">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
+      <a href="index.html" class="text-2xl font-bold text-white italic hover:scale-105 transition-transform duration-300 inline-block">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
       <button id="hamburger" class="md:hidden text-white text-2xl">&#9776;</button>
       <div id="nav-links" class="hidden md:flex gap-6">
-        <a href="index.html" class="text-white/75 hover:text-aksen-muda transition">Home</a>
-        <a href="index.html#about" class="text-white/75 hover:text-aksen-muda transition">Tentang Kami</a>
-        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition">Menu</a>
-        <a href="pemesanan.html" class="text-white/75 hover:text-aksen-muda transition">Pemesanan</a>
-        <a href="contact.html" class="text-white hover:text-aksen-muda transition">Kontak</a>
+        <a href="index.html" class="text-white/75 hover:text-aksen-muda transition relative group">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="index.html#about" class="text-white/75 hover:text-aksen-muda transition relative group">Tentang Kami<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition relative group">Menu<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="pemesanan.html" class="text-white hover:text-aksen-muda transition relative group">Pemesanan<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="contact.html" class="text-white/75 hover:text-aksen-muda transition relative group">Kontak<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
       </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-coklat-muda px-4 pb-4">
-      <a href="index.html" class="block py-2 text-white/75 hover:text-aksen-muda">Home</a>
-      <a href="index.html#about" class="block py-2 text-white/75 hover:text-aksen-muda">Tentang Kami</a>
-      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda">Menu</a>
-      <a href="pemesanan.html" class="block py-2 text-white/75 hover:text-aksen-muda">Pemesanan</a>
-      <a href="contact.html" class="block py-2 text-white hover:text-aksen-muda">Kontak</a>
+      <a href="index.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Home</a>
+      <a href="index.html#about" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Tentang Kami</a>
+      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Menu</a>
+      <a href="pemesanan.html" class="block py-2 text-white hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Pemesanan</a>
+      <a href="contact.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Kontak</a>
     </div>
   </nav>
+
+
+  <!-- Menu Section -->
+  <section class="bg-krem-gelap py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-2">Menu <span class="text-aksen">Kami</span></h2>
+      <p class="text-center text-coklat-muda mb-10">Berbagai pilihan kopi dan minuman spesial untuk menemani harimu</p>
+
+      <!-- Americano -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
+          <div class="overflow-hidden rounded mb-3">
+            <img src="img/menu/americano.png" alt="Americano" class="w-32 h-32 object-cover mx-auto group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <h3 class="font-semibold text-lg">Americano</h3>
+          <p class="text-aksen font-bold">IDR 20K</p>
+          <button onclick="tambahKeranjang('Americano', 'IDR 20K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-aksen/30">+ Keranjang</button>
+        </div>
+      
+      <!-- Kopi Susu Gula Aren -->
+        <div class="bg-white rounded-lg shadow p-4 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
+          <div class="overflow-hidden rounded mb-3">
+            <img src="img/menu/kopigulaaren.png" alt="Kopi Gula Aren" class="w-32 h-32 object-cover mx-auto group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <h3 class="font-semibold text-lg">Kopi Susu Gula Aren</h3>
+          <p class="text-aksen font-bold">IDR 25K</p>
+          <button onclick="tambahKeranjang('Kopi Susu Gula Aren', 'IDR 25K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-aksen/30">+ Keranjang</button>
+        </div>
+
+      <!-- Cappuccino -->
+        <div class="bg-white rounded-lg shadow p-4 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
+          <div class="overflow-hidden rounded mb-3">
+            <img src="img/menu/capuccino.png" alt="Cappuccino" class="w-32 h-32 object-cover mx-auto group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <h3 class="font-semibold text-lg">Cappuccino</h3>
+          <p class="text-aksen font-bold">IDR 35K</p>
+          <button onclick="tambahKeranjang('Cappuccino', 'IDR 35K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-aksen/30">+ Keranjang</button>
+        </div>
+
+      <!-- Caffe Latte -->
+        <div class="bg-white rounded-lg shadow p-4 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
+          <div class="overflow-hidden rounded mb-3">
+            <img src="img/menu/caffelatte.jpg" alt="Caffe Latte" class="w-32 h-32 object-cover mx-auto group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <h3 class="font-semibold text-lg">Caffe Latte</h3>
+          <p class="text-aksen font-bold">IDR 30K</p>
+          <button onclick="tambahKeranjang('Caffe Latte', 'IDR 30K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-aksen/30">+ Keranjang</button>
+        </div>
+
+      <!-- Caramel Latte -->
+        <div class="bg-white rounded-lg shadow p-4 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
+          <div class="overflow-hidden rounded mb-3">
+            <img src="img/menu/caramellatte.png" alt="Caramel Latte" class="w-32 h-32 object-cover mx-auto group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <h3 class="font-semibold text-lg">Caramel Latte</h3>
+          <p class="text-aksen font-bold">IDR 45K</p>
+          <button onclick="tambahKeranjang('Caramel Latte', 'IDR 45K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-aksen/30">+ Keranjang</button>
+        </div>
+
+      <!-- Kopi Tubruk -->
+        <div class="bg-white rounded-lg shadow p-4 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
+          <div class="overflow-hidden rounded mb-3">
+            <img src="img/menu/kopitubruk.jpg" alt="Kopi Tubruk" class="w-32 h-32 object-cover mx-auto group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <h3 class="font-semibold text-lg">Kopi Tubruk</h3>
+          <p class="text-aksen font-bold">IDR 20K</p>
+          <button onclick="tambahKeranjang('Kopi Tubruk', 'IDR 20K', 'minuman')" class="mt-3 bg-aksen hover:bg-aksen-muda text-white text-sm px-4 py-2 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-aksen/30">+ Keranjang</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Produk Unggulan -->
   <section class="bg-krem-gelap py-16">
@@ -145,4 +216,3 @@
 
   <script src="js/script.js"></script>
 </body>
-</html>
