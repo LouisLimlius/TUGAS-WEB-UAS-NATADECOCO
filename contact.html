@@ -26,31 +26,30 @@
     body { font-family: 'Poppins', sans-serif; }
   </style>
 </head>
-<body class="bg-krem text-coklat">
+<body class="bg-krem text-coklat scroll-smooth">
 
   <!-- Navbar -->
-  <nav class="bg-coklat fixed top-0 left-0 right-0 z-50 shadow-md">
+  <nav id="navbar" class="bg-coklat/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
-      <a href="index.html" class="text-2xl font-bold text-white italic">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
+      <a href="index.html" class="text-2xl font-bold text-white italic hover:scale-105 transition-transform duration-300 inline-block">NataDe<span class="text-aksen-muda">'Coco</span>.</a>
       <button id="hamburger" class="md:hidden text-white text-2xl">&#9776;</button>
       <div id="nav-links" class="hidden md:flex gap-6">
-        <a href="index.html" class="text-white/75 hover:text-aksen-muda transition">Home</a>
-        <a href="index.html#about" class="text-white/75 hover:text-aksen-muda transition">Tentang Kami</a>
-        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition">Menu</a>
-        <a href="pemesanan.html" class="text-white/75 hover:text-aksen-muda transition">Pemesanan</a>
-        <a href="contact.html" class="text-white hover:text-aksen-muda transition">Kontak</a>
+        <a href="index.html" class="text-white/75 hover:text-aksen-muda transition relative group">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="index.html#about" class="text-white/75 hover:text-aksen-muda transition relative group">Tentang Kami<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="menu.html" class="text-white/75 hover:text-aksen-muda transition relative group">Menu<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="pemesanan.html" class="text-white/75 hover:text-aksen-muda transition relative group">Pemesanan<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
+        <a href="contact.html" class="text-white hover:text-aksen-muda transition relative group">Kontak<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-aksen-muda group-hover:w-full transition-all duration-300"></span></a>
       </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-coklat-muda px-4 pb-4">
-      <a href="index.html" class="block py-2 text-white/75 hover:text-aksen-muda">Home</a>
-      <a href="index.html#about" class="block py-2 text-white/75 hover:text-aksen-muda">Tentang Kami</a>
-      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda">Menu</a>
-      <a href="pemesanan.html" class="block py-2 text-white/75 hover:text-aksen-muda">Pemesanan</a>
-      <a href="contact.html" class="block py-2 text-white hover:text-aksen-muda">Kontak</a>
+      <a href="index.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Home</a>
+      <a href="index.html#about" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Tentang Kami</a>
+      <a href="menu.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Menu</a>
+      <a href="pemesanan.html" class="block py-2 text-white/75 hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Pemesanan</a>
+      <a href="contact.html" class="block py-2 text-white hover:text-aksen-muda hover:translate-x-2 transition-all duration-300">Kontak</a>
     </div>
   </nav>
 
-  <!-- Kontak Section -->
   <section class="pt-24 pb-16">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-2">Kontak <span class="text-aksen">Kami</span></h2>
@@ -111,15 +110,15 @@
   <footer class="bg-coklat text-white py-8">
     <div class="max-w-6xl mx-auto px-4 text-center">
       <div class="flex justify-center gap-6 mb-4">
-        <a href="#" class="hover:text-aksen-muda transition">Instagram</a>
-        <a href="#" class="hover:text-aksen-muda transition">Twitter</a>
-        <a href="#" class="hover:text-aksen-muda transition">Facebook</a>
+        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Instagram</a>
+        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Twitter</a>
+        <a href="#" class="hover:text-aksen-muda transition hover:scale-110 inline-block">Facebook</a>
       </div>
       <div class="flex justify-center gap-6 mb-4 text-white/75 text-sm">
-        <a href="index.html" class="hover:text-white">Home</a>
-        <a href="menu.html" class="hover:text-white">Menu</a>
-        <a href="pemesanan.html" class="hover:text-white">Pemesanan</a>
-        <a href="contact.html" class="hover:text-white">Kontak</a>
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="menu.html" class="hover:text-white transition">Menu</a>
+        <a href="pemesanan.html" class="hover:text-white transition">Pemesanan</a>
+        <a href="contact.html" class="hover:text-white transition">Kontak</a>
       </div>
       <p class="text-white/50 text-sm">Created by Kelompok NataDeCoco. &copy; 2026.</p>
     </div>
